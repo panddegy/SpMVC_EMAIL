@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
+<style>
+	form{
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		margin: 0 auto;
+	}
+	input, textarea{
+		margin: 5px;
+		padding: 8px 16px;
+	}
+	.sub-title{
+		font-style: italic;
+	}
+	input::placeholder{
+		font-size: 15px;
+		color: #aaa;
+		font-weight: normal;
+	}
+	textarea::placeholder{
+		font-size: 17px;
+		color: #aaa;
+		font-weight: normal;
+	}
+</style>
+<form:form modelAttribute="emailVO" enctype="multipart/form-data" autocomplete="off">
+	<h3 class="sub-title">Update E-mail</h3>
+	<form:hidden id="email-id" path="id" value="${id}"/>
+	<form:input path="s_date" value="${VO.s_date}" readonly="readonly" />
+	<form:input path="s_time" value="${VO.s_time}" readonly="readonly" />
+	<form:input class="form-input" path="from_email" value="${VO.from_email}"/>
+	<form:input path="to_email" value="${VO.to_email}"/>
+	<form:input path="s_subject" value="${VO.s_subject}"/>
+	<form:textarea rows="10" path="s_content" value="${VO.s_content }"/>
+	<form:input type="file" path="s_files" multiple="multiple"/>
+</form:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
