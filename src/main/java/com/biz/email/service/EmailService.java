@@ -51,48 +51,93 @@ public class EmailService {
 		String realPath=servletContext.getRealPath("/files/");
 		File dir=new File(realPath);
 		if(!dir.exists()) dir.mkdir();
-		if(files.get(0)!=null) {
-			String realName=files.get(0).getOriginalFilename();
-			String saveName=UUID.randomUUID().toString()+realName;
-			File saveFile=new File(realPath, saveName);
-			try {
-				files.get(0).transferTo(saveFile);
-				emailVO.setS_file1(saveName);
-			} catch (IllegalStateException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if(files.size()>0) {
+			if(files.get(0)!=null) {
+				String realName=files.get(0).getOriginalFilename();
+				String saveName=UUID.randomUUID().toString()+realName;
+				File saveFile=new File(realPath, saveName);
+				try {
+					files.get(0).transferTo(saveFile);
+					emailVO.setS_file1(saveName);
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
-		if(files.get(1)!=null) {
-			String realName=files.get(1).getOriginalFilename();
-			String saveName=UUID.randomUUID().toString()+realName;
-			File saveFile=new File(realPath, saveName);
-			try {
-				files.get(1).transferTo(saveFile);
-				emailVO.setS_file2(saveName);
-			} catch (IllegalStateException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if(files.size()>1) {
+			if(files.get(1)!=null) {
+				String realName=files.get(1).getOriginalFilename();
+				String saveName=UUID.randomUUID().toString()+realName;
+				File saveFile=new File(realPath, saveName);
+				try {
+					files.get(1).transferTo(saveFile);
+					emailVO.setS_file2(saveName);
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
-		
 		
 		return emailMapper.insert(emailVO);
 	}
 	
-	public int update(EmailVO emailVO) {
+	public int update(EmailVO emailVO, MultipartHttpServletRequest request) {
 		
-		
-		
-		
-		
-		
-		
+		List<MultipartFile> files=request.getFiles("s_files");
+		EmailVO beforeVO=emailMapper.findByID(emailVO.getId());
+		String realPath=servletContext.getRealPath("/files/");
+		File dir=new File(realPath);
+		if(!dir.exists()) dir.mkdir();
+		if(files.size()>0) {
+			if(files.get(0)!=null) {
+				String realName=files.get(0).getOriginalFilename();
+				String saveName=UUID.randomUUID().toString()+realName;
+				File saveFile=new File(realPath, saveName);
+				try {
+					files.get(0).transferTo(saveFile);
+					emailVO.setS_file1(saveName);
+					File beforeFile=new File(realPath, beforeVO.getS_file1());
+					beforeFile.delete();
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		if(files.size()>1) {
+			if(files.get(1)!=null) {
+				String realName=files.get(1).getOriginalFilename();
+				String saveName=UUID.randomUUID().toString()+realName;
+				File saveFile=new File(realPath, saveName);
+				try {
+					files.get(1).transferTo(saveFile);
+					emailVO.setS_file2(saveName);
+					File beforeFile=new File(realPath, beforeVO.getS_file2());
+					beforeFile.delete();
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		
 		return emailMapper.update(emailVO);
 	}
 	
 	public int delete(long id) {
+		
+		EmailVO emailVO=emailMapper.findByID(id);
+		String realPath=servletContext.getRealPath("/files/");
+		if(emailVO.getS_file1()!=null) {
+			File deleteFile=new File(realPath, emailVO.getS_file1());
+			deleteFile.delete();
+		}
+		if(emailVO.getS_file2()!=null) {
+			File deleteFile=new File(realPath, emailVO.getS_file2());
+			deleteFile.delete();
+		}
 		
 		return emailMapper.delete(id);
 	}

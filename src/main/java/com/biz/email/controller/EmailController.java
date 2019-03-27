@@ -59,12 +59,18 @@ public class EmailController {
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String updateEmail(Model model, @ModelAttribute EmailVO emailVO, MultipartHttpServletRequest request) {
 		
-		emailService.update(emailVO);
+		emailService.update(emailVO, request);
 		
 		return "home";
 	}
 	
-	
+	@RequestMapping(value="delete", method=RequestMethod.GET)
+	public String deleteEmail(@RequestParam long id) {
+		
+		emailService.delete(id);
+		
+		return "home";
+	}
 	
 }
 
