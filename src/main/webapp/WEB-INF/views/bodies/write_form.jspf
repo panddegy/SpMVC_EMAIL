@@ -14,16 +14,22 @@
 		margin: 5px;
 		padding: 8px 16px;
 	}
+	input[type=file]{
+		margin: 5px;
+		padding:0;
+	}
 	.sub-title{
 		font-style: italic;
 	}
 	input::placeholder{
+		font-family: sans-serif;
 		font-size: 15px;
 		color: #aaa;
 		font-weight: normal;
 	}
 	textarea::placeholder{
-		font-size: 17px;
+		font-family: sans-serif;
+		font-size: 16px;
 		color: #aaa;
 		font-weight: normal;
 	}
@@ -36,13 +42,6 @@
 	<form:textarea rows="10" path="s_content" placeholder="Enter content"/>
 	<form:input type="file" path="s_files" multiple="multiple"/>
 </form:form>
-
-
-
-
-
-
-
 
 
 

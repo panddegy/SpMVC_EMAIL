@@ -28,6 +28,7 @@ $(function(){
 		<a href="${rootpath}/">Home</a>
 		<a href="${rootpath}/write">Email</a>
 		<a href="${rootpath}/list">List</a>
+		<a href="#">About</a>
 	</nav>
 </header>
 <section>
