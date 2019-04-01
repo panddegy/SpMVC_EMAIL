@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.biz.email.model.EmailVO;
 import com.biz.email.service.EmailService;
+import com.biz.email.service.SendMailService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,7 +52,7 @@ public class EmailController {
 	public String updateEmail(Model model, @RequestParam long id, @ModelAttribute EmailVO emailVO) {
 		
 		model.addAttribute("BODY", "UPDATE");
-		model.addAttribute("VO", emailService.findByID(id));
+		model.addAttribute("emailVO", emailService.findByID(id));
 		
 		return "home";
 	}

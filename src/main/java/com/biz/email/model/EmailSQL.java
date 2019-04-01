@@ -14,8 +14,8 @@ public class EmailSQL {
 				.VALUES("s_time", "#{s_time}")
 				.VALUES("s_subject", "#{s_subject}")
 				.VALUES("s_content", "#{s_content}")
-				.VALUES("s_file1", "#{s_file1}")
-				.VALUES("s_file2", "#{s_file2}");
+				.VALUES("s_file1", "#{s_file1,jdbcType=NVARCHAR}")
+				.VALUES("s_file2", "#{s_file2,jdbcType=NVARCHAR}");
 		
 		return sql.toString();
 	}
@@ -29,8 +29,8 @@ public class EmailSQL {
 				.SET("s_time=#{s_time}")
 				.SET("s_subject=#{s_subject}")
 				.SET("s_content=#{s_content}")
-				.SET("s_file1=#{s_file2}")
-				.SET("s_file2=#{s_file2}")
+				.SET("s_file1=#{s_file1,jdbcType=NVARCHAR}")
+				.SET("s_file2=#{s_file2,jdbcType=NVARCHAR}")
 				.WHERE("id=#{id}");
 		
 		return sql.toString();

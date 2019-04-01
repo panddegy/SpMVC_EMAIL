@@ -26,6 +26,9 @@ public class EmailService {
 	@Autowired
 	ServletContext servletContext;
 	
+	@Autowired
+	SendMailService sendMailService;
+	
 	public List<EmailVO> selectAll(){
 		
 		return emailMapper.selectAll();
@@ -79,6 +82,8 @@ public class EmailService {
 				}
 			}
 		}
+		
+		sendMailService.sendMail(emailVO);
 		
 		return emailMapper.insert(emailVO);
 	}

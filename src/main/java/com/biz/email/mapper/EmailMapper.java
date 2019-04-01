@@ -12,7 +12,7 @@ import com.biz.email.model.EmailVO;
 
 public interface EmailMapper {
 
-	@Select(" select * from tbl_emails ")
+	@Select(" select * from tbl_emails order by s_date desc, s_time desc ")
 	public List<EmailVO> selectAll();
 	@Select(" select * from tbl_emails where id=#{id} ")
 	public EmailVO findByID(long id);

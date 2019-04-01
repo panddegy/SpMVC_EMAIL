@@ -3,20 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <style>
-	table{
-		width: 50%;
-		margin: 0 auto;
-		border: 1px solid black;
-	}
-	th{
-		font-style: italic;
-		padding: 4px 8px;
-	}
-	td{
-		border: 1px solid #777;
-		padding: 4px 8px;
-		text-align: center;
-	}
+
 </style>
 <script>
 $(function(){
@@ -26,7 +13,9 @@ $(function(){
 	})
 })
 </script>
-<table>
+<div class="table-wrapper">
+<h3 class="sub-title bounceInRight-animation">E-mail List</h3>
+<table class="fadeIn-animation">
 	<tr>
 		<th>NO</th>
 		<th>보내는 사람</th>
@@ -54,7 +43,7 @@ $(function(){
 	</c:choose>
 
 </table>
-
+</div>
 
 
 

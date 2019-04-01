@@ -25,7 +25,7 @@ $(function(){
 <header>
 	<h2>E-Mail</h2>
 	<nav>
-		<a href="${rootpath}/">Home</a>
+		<a href="${rootpath}/" >Home</a>
 		<a href="${rootpath}/write">Email</a>
 		<a href="${rootpath}/list">List</a>
 		<a href="#">About</a>
@@ -39,7 +39,7 @@ $(function(){
 		<%@include file="/WEB-INF/views/bodies/email_list.jspf" %>
 	</c:if>
 	<c:if test="${BODY=='UPDATE'}">
-		<%@include file="/WEB-INF/views/bodies/update_form.jspf" %>
+		<%@include file="/WEB-INF/views/bodies/write_form.jspf" %>
 	</c:if>
 </section>
 <footer>
